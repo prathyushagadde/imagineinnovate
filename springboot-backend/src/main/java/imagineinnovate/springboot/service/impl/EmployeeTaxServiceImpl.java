@@ -84,6 +84,5 @@ public class EmployeeTaxServiceImpl implements EmployeeTaxService{
 								new ResourceNotFoundException("Employee", "Id", id));
 		employeeTaxRepository.deleteById(id);
 	}
-
 	
 }
