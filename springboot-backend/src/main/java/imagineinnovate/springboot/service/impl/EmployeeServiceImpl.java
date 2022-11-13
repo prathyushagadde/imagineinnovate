@@ -39,7 +39,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public Employee updateEmployee(Employee employee, long id) {
 		
-		// we need to check whether employee with given id is exist in DB or not
 		Employee existingEmployee = employeeRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Employee", "Id", id)); 
 		
@@ -49,15 +48,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 		existingEmployee.setPhoneNumber(employee.getPhoneNumber());
 		existingEmployee.setDoj(employee.getDoj());
 		existingEmployee.setSalary(employee.getSalary());
-		// save existing employee to DB
 		employeeRepository.save(existingEmployee);
 		return existingEmployee;
 	}
 
 	@Override
 	public void deleteEmployee(long id) {
-		
-		// check whether a employee exist in a DB or not
 		employeeRepository.findById(id).orElseThrow(() -> 
 								new ResourceNotFoundException("Employee", "Id", id));
 		employeeRepository.deleteById(id);
